@@ -46,13 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Get the guess from the input field
         const guess = guessInput.value.toLowerCase();
 
-        // Check if the guess is empty
-        if (guess === '') {
-            showMessage('Please enter a guess.');
-            return;
-        }
-        if (guess.length !== WORD_LENGTH) {
-            showMessage(`Please enter a ${WORD_LENGTH}-letter guess.`);
+        if (guess === '' || !guess.match(/^[a-zA-Z ]+$/) || guess.length !== WORD_LENGTH) {
+            showMessage('Please enter a valid guess.');
             return;
         }
 
@@ -67,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data = await response.json();
             // Update board function to handle the respponse
-            updateBoard(guess, data.result); // Update the UI with the letter states
+            updateBoard(guess, data.result);
 
             // Check game win/lose conditions
             if (data.isCorrect) {
