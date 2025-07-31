@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameBoard = document.getElementById('game-board');
     const guessInput = document.getElementById('guess-input');
     const guessForm = document.getElementById('guess-form');
-    const submitButton = document.getElementById('submit-guess');
     const messageArea = document.getElementById('message-area');
 
     const WORD_LENGTH = 5;
