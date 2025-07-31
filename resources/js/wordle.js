@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Check game win/lose conditions
             if (data.isCorrect) {
-                showMessage('Congratulations! You guessed the word!');
+                showMessage('Congratulations, you win!');
                 gameOver = true;
             } else if (currentRow === MAX_NUM_GUESSES - 1) {
                 showMessage(`Game over!`);
@@ -92,12 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentBoxes = document.querySelectorAll(`.letter-box[data-row="${currentRow}"]`);
         for (let i = 0; i < WORD_LENGTH; i++) {
             const box = currentBoxes[i];
-            box.textContent = guess[i].toUpperCase(); // Display the letter
+            box.textContent = guess[i].toUpperCase();
+            // Apply the state classes to the letter boxes
+            box.classList.add(results[i].state);
 
-            // Apply the state class with a slight delay for a visual effect
-            setTimeout(() => {
-                box.classList.add(results[i].state);
-            }, i * 100); // Stagger the animation for each letter
         }
     }
 
