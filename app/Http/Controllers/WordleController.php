@@ -23,15 +23,14 @@ class WordleController extends Controller
         // Determine the word of the day 
         $todaysWord = Word::whereDate('use_date', Carbon::today())->first();
         if (!$todaysWord) {
-            // Handle case where no word is scheduled for today
             return response()->json(['error' => 'No word scheduled for today. Please check the word schedule.'], 500);
         }
 
         $wordOfTheDay = $todaysWord->word;
 
         $result = []; // Array to store the validation result for each letter
-        $tempWord = str_split($wordOfTheDay); // Convert word of the day to an array of characters
-        $tempGuess = str_split($guessedWord); // Convert guessed word to an array of characters
+        $tempWord = str_split($wordOfTheDay);
+        $tempGuess = str_split($guessedWord);
 
         // Create a for loop to initialise each letter with absent initially
         for ($i = 0; $i < 5; $i++) {
