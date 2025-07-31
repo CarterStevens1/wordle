@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Check if game is over
         if (gameOver) {
-            showMessage('Game over! Refresh to play again.');
+            showMessage('Game over!');
             return;
         }
 
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 showMessage('Congratulations! You guessed the word!');
                 gameOver = true;
             } else if (currentRow === MAX_NUM_GUESSES - 1) {
-                showMessage(`Game over! Refresh to play again.`);
+                showMessage(`Game over!`);
                 gameOver = true;
             } else {
                 currentRow++;
