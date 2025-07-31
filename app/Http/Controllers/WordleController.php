@@ -17,11 +17,12 @@ class WordleController extends Controller
             'guess' => 'required|min:5|max:5|string',
         ]);
 
+
         // Convert to lowercase to make it easier to compare
         $guessedWord = strtolower($request->input('guess'));
 
         // Determine the word of the day 
-        $todaysWord = Word::whereDate('use_date', Carbon::today())->first();
+        $todaysWord = Word::whereRaw("DATE(use_date) = DATE('now')")->first();
         if (!$todaysWord) {
             return response()->json(['error' => 'No word scheduled for today. Please check the word schedule.'], 500);
         }
@@ -35,25 +36,17 @@ class WordleController extends Controller
         // Create a for loop to initialise each letter with absent initially
         for ($i = 0; $i < 5; $i++) {
             $result[$i] = ['letter' => $tempGuess[$i], 'state' => 'absent'];
-        }
-
-        // Loop through and check if character is correct
-        for ($i = 0; $i < 5; $i++) {
             if ($tempGuess[$i] !== null && $tempGuess[$i] === $tempWord[$i]) {
                 $result[$i]['state'] = 'correct';
-            }
-        };
-
-        // Loop through and check if character is present in the word of the day
-        for ($i = 0; $i < 5; $i++) {
-            // Check to make sure letter is not correct or null
-            if ($tempGuess[$i] !== null && $tempGuess[$i] !== $tempWord[$i]) {
+            } else if ($tempGuess[$i] !== null && $tempGuess[$i] !== $tempWord[$i]) {
                 $foundIndex = array_search($tempGuess[$i], $tempWord);
-                if ($foundIndex !== false) {
+                if ($foundIndex) {
                     $result[$i]['state'] = 'present';
                 }
+            } else {
             }
         }
+
 
         // Determine if the guessed word is entirely correct
         $isCorrect = ($guessedWord === $wordOfTheDay);
