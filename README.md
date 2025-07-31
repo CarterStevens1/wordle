@@ -1,15 +1,18 @@
 Steps to use the wordle game:
 
+I did this through Herd so i would potentially recommend doing the same.
+
 1. Clone the repository
-2. Run the following commands:
+2. Link to Herd with SQLite
+3. Run the following commands:
 
 ```bash
 npm install
 composer install
 php artisan migrate
 php artisan db:seed --class=WordSeeder
-php artisan serve (in terminal) - To allow api calls
-npm run dev (in vscode terminal)
+npm run build 
+php artisan serve
 ```
 
-3. try the game in your artisan serve url
+4. try the game in your artisan serve url
