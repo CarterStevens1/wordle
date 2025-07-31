@@ -11,11 +11,11 @@ class WordleController extends Controller
 {
     public function guess(Request $request)
     {
-
         // Validate
         $request->validate([
-            'guess' => 'required|min:5|max:5|string',
+            'guess' => 'required|min:5|max:5|string|alpha',
         ]);
+
 
 
         // Convert to lowercase to make it easier to compare

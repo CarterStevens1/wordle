@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const gameBoard = document.getElementById('game-board');
     const guessInput = document.getElementById('guess-input');
+    const guessForm = document.getElementById('guess-form');
     const submitButton = document.getElementById('submit-guess');
     const messageArea = document.getElementById('message-area');
 
@@ -28,11 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createGameBoard();
 
-    submitButton.addEventListener('click', submitGuess);
-    guessInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            submitGuess();
-        }
+    guessForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        submitGuess();
     });
 
     async function submitGuess() {
