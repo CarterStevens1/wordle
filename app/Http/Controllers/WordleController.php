@@ -42,19 +42,16 @@ class WordleController extends Controller
         for ($i = 0; $i < 5; $i++) {
             if ($tempGuess[$i] !== null && $tempGuess[$i] === $tempWord[$i]) {
                 $result[$i]['state'] = 'correct';
-                $tempWord[$i] = null; // Mark as used in the word of the day
-                $tempGuess[$i] = null; // Mark as used in the guess
             }
         };
 
         // Loop through and check if character is present in the word of the day
         for ($i = 0; $i < 5; $i++) {
-            if ($tempGuess[$i] !== null) { // If this letter hasn't been marked 'correct'
-                // Check if the guessed letter exists anywhere in the remaining tempWord
+            // Check to make sure letter is not correct or null
+            if ($tempGuess[$i] !== null && $tempGuess[$i] !== $tempWord[$i]) {
                 $foundIndex = array_search($tempGuess[$i], $tempWord);
                 if ($foundIndex !== false) {
                     $result[$i]['state'] = 'present';
-                    $tempWord[$foundIndex] = null; // Mark as used in the word of the day
                 }
             }
         }
