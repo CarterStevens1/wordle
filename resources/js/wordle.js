@@ -4,17 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.getElementById('submit-guess');
     const messageArea = document.getElementById('message-area');
 
-    // Game constants
     const WORD_LENGTH = 5;
     const MAX_NUM_GUESSES = 6;
-
-    // Game variables (defaults)
     let currentRow = 0;
     let gameOver = false;
 
     // Create the game board
     function createGameBoard() {
-        gameBoard.innerHTML = ''; // Clear the game board
+        gameBoard.innerHTML = ''; // reset the game board to empty
         for (let i = 0; i < MAX_NUM_GUESSES; i++) {
             const row = document.createElement('div');
             row.classList.add('row');
@@ -52,6 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Check if the guess is empty
         if (guess === '') {
             showMessage('Please enter a guess.');
+            return;
+        }
+        if (guess.length !== WORD_LENGTH) {
+            showMessage(`Please enter a ${WORD_LENGTH}-letter guess.`);
             return;
         }
 
