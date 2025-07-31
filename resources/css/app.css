@@ -9,3 +9,28 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+.row {
+display: contents;
+}
+
+/* Individual letter box styling */
+.letter-box {
+    @apply size-[60px] flex justify-center items-center text-3xl font-bold border border-[#3a3a3c] rounded-lg uppercase box-border transition-all duration-300 ease-in-out;
+}
+
+/* Styling for 'correct' letters (green) */
+.letter-box.correct {
+@apply bg-[#6aaa64] border-[#6aaa64] text-white;
+}
+
+/* Styling for 'present' letters (yellow) */
+.letter-box.present {
+@apply bg-[#c9b458] border-[#c9b458] text-white;
+}
+
+/* Styling for 'absent' letters (grey) */
+.letter-box.absent {
+    @apply bg-[#3a3a3c] border-[#3a3a3c] text-white;
+}
+
