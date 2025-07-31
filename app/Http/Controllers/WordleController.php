@@ -43,7 +43,6 @@ class WordleController extends Controller
                 if ($foundIndex) {
                     $result[$i]['state'] = 'present';
                 }
-            } else {
             }
         }
 
