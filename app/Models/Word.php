@@ -8,5 +8,6 @@ class Word extends Model
 {
     protected $fillable = [
         'word',
+        'use_date'
     ];
 }

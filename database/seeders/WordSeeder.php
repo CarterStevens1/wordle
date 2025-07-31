@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Word;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class WordSeeder extends Seeder
 {
@@ -75,8 +76,11 @@ class WordSeeder extends Seeder
             'poets'
         ];
 
-        foreach ($words as $word) {
-            Word::create(['word' => $word]);
+        foreach ($words as $index => $word) {
+            Word::create([
+                'word' => $word,
+                'use_date' => Carbon::today()->addDays($index)
+            ]);
         }
     }
 }

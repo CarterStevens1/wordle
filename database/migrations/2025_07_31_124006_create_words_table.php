@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('words', function (Blueprint $table) {
             $table->id();
             $table->string('word', 5)->unique(); // Store 5-letter words, ensuring uniqueness
+            $table->date('use_date')->unique(); // Store the date the word was used
             $table->timestamps();
         });
     }

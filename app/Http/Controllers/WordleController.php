@@ -21,17 +21,13 @@ class WordleController extends Controller
         $guessedWord = strtolower($request->input('guess'));
 
         // Determine the word of the day 
-        $totalWords = Word::count();
-        if ($totalWords === 0) {
-            // Handle case where no words are in the database
-            return response()->json(['error' => 'No words found in the database. Please seed the words table.'], 500);
+        $todaysWord = Word::whereDate('use_date', Carbon::today())->first();
+        if (!$todaysWord) {
+            // Handle case where no word is scheduled for today
+            return response()->json(['error' => 'No word scheduled for today. Please check the word schedule.'], 500);
         }
 
-        $dayOfYear = Carbon::now()->dayOfYear;
-
-        $wordOfTheDayIndex = ($dayOfYear - 1) % $totalWords;
-
-        $wordOfTheDay = Word::skip($wordOfTheDayIndex)->first()->word;
+        $wordOfTheDay = $todaysWord->word;
 
         $result = []; // Array to store the validation result for each letter
         $tempWord = str_split($wordOfTheDay); // Convert word of the day to an array of characters
