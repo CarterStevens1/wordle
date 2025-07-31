@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('words', function (Blueprint $table) {
             $table->id();
+            $table->string('word', 5)->unique(); // Store 5-letter words, ensuring uniqueness
             $table->timestamps();
         });
     }
