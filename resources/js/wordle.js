@@ -98,6 +98,4 @@ document.addEventListener('DOMContentLoaded', () => {
         messageArea.textContent = message;
     }
 
-
-
 });
