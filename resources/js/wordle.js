@@ -57,8 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify({ guess }),
             });
-
             const data = await response.json();
+
+            if (data.error) {
+                showMessage(data.error);
+                return;
+            }
             // Update board function to handle the respponse
             updateBoard(guess, data.result);
 
