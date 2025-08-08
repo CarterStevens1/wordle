@@ -7,4 +7,6 @@ use App\Http\Controllers\WordleController;
 
 
 // Route for handling word guesses
-Route::post('/guess', [WordleController::class, 'guess']);
+Route::middleware(['throttle:guess'])->group(function () {
+    Route::post('/guess', [WordleController::class, 'guess']);
+});
